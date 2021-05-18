@@ -5,10 +5,11 @@ class Bio extends Component {
         super(props);
 
         this.state = {
-            last_update: Date.now(),
             text: "This is your Bio Text",
+            last_update: Date.now()
         };
 
+        this.text = React.createRef();
         this.edit = this.edit.bind(this)
     }
 
@@ -17,12 +18,11 @@ class Bio extends Component {
         form.classList = "unhidden"
     };
 
-    submitBioEdit = () =>  {
+    submitBioEdit = (e) =>  {
+        e.preventDefault();
         let form = document.getElementById("bioForm")
-        let text = document.getElementById("bioText")
-        let input = document.getElementById("bioInput")
-        this.setState({text: input.value, last_update: this.state.last_update}, () => {
-            text.textContent = input.value;
+        this.setState({text: this.text.current.value, last_update: this.state.last_update}, () => {
+            document.getElementById("bioText").textContent = this.text.current.value;
         });
         form.classList = "hidden"
     }
@@ -38,7 +38,7 @@ class Bio extends Component {
                 <div className={"bio-editor"}>
                     <form id="bioForm" onSubmit={this.submitBioEdit} className={"hidden"}>
                         <label htmlFor="bioInput">Update Bio</label>
-                        <input type="text" id="bioInput"/>
+                        <input type="text" id="bioInput" defaultValue={text} ref={this.text}/>
                         <button id="btnSubmit" type="submit">
                             Update Bio
                         </button>
