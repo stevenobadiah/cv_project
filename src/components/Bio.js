@@ -6,7 +6,8 @@ class Bio extends Component {
 
         this.state = {
             text: "This is your Bio Text",
-            last_update: Date.now()
+            last_update: Date.now(),
+            button_text: "Edit"
         };
 
         this.text = React.createRef();
@@ -14,26 +15,31 @@ class Bio extends Component {
     }
 
     edit = () => {
-        let form = document.getElementById("bioForm")
-        form.classList = "unhidden"
+        if (this.state.button_text === "Edit") {
+            document.getElementById("bioForm").classList = "unhidden"
+            this.setState({button_text: "Cancel"})
+        } else {
+            document.getElementById("bioForm").classList = "hidden"
+            this.setState({button_text: "Edit"})
+        }
     };
 
     submitBioEdit = (e) =>  {
         e.preventDefault();
-        let form = document.getElementById("bioForm")
         this.setState({text: this.text.current.value, last_update: this.state.last_update}, () => {
             document.getElementById("bioText").textContent = this.text.current.value;
         });
-        form.classList = "hidden"
+        document.getElementById("bioForm").classList = "hidden"
+        document.getElementById("btnToggleBioForm").innerHTML = "Edit"
     }
 
     render() {
-        const { text } = this.state;
+        const { text, button_text } = this.state;
         return (
-            <div className={"bio"}>
-                <div className={"bio-display"}>
+            <section className={"bio"}>
+                <div id="bioDisplay">
                     <p id="bioText">{text}</p>
-                    <button onClick={this.edit} className={"edit-bio-btn"}>Edit</button>
+                    <button onClick={this.edit} id="btnToggleBioForm">{button_text}</button>
                 </div>
                 <div className={"bio-editor"}>
                     <form id="bioForm" onSubmit={this.submitBioEdit} className={"hidden"}>
@@ -44,7 +50,7 @@ class Bio extends Component {
                         </button>
                     </form>
                 </div>
-            </div>
+            </section>
         );
     };
 };

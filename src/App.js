@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Skill from "./components/Skill";
-//import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -22,11 +21,16 @@ class App extends Component {
 
     return (
       <div>
-        <Header/>
-        <Bio/>
-        <Education educations={this.educations}/>
-        <Experience experiences={this.experiences}/>
-        <Skill skills={this.skills}/>
+        <header>
+          <h1>CV Builder</h1>
+        </header>
+        <main>
+          <Header/>
+          <Bio/>
+          <Education educations={this.educations}/>
+          <Experience experiences={this.experiences}/>
+          <Skill skills={this.skills}/>
+        </main>
       </div>
     );
   }

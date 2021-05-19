@@ -44,3 +44,93 @@
 .unhidden {
   display: block;
 }
+
+ul {
+  list-style-type: none;
+  padding: 5px;
+  margin: 0;
+}
+
+header {
+  background-color: grey;
+}
+
+header > h1 {
+  font-size: 40px;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+body {
+  background-color: white;
+}
+
+main {
+  width: 60%;
+  margin: 0 auto;
+}
+
+section {
+  background-color: yellow;
+  display: block;
+  width: 100%;
+}
+
+.section-header {
+  padding-top: 10px;
+}
+
+.header,
+#bioDisplay {
+  position: relative;
+  text-align: center;
+  min-height: 40px;
+}
+
+#educationDisplay,
+#experienceDisplay,
+#skillDisplay {
+  position: relative;
+  min-height: 40px;
+}
+
+#headerFields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-sub {
+  padding-bottom: 15px;
+}
+
+#btnToggleHeaderForm,
+#btnToggleBioForm,
+#btnAddEducation,
+#btnEducationCancel,
+#btnAddExperience,
+#btnExperienceCancel,
+#btnAddSkill,
+#btnSkillCancel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#bioText {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.education-university,
+.experience-company {
+  float: left;
+  text-align: left;
+}
+
+.education-graduation-year,
+.experience-date-range {
+  float: right;
+  text-align: right;
+}

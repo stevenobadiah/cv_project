@@ -9,7 +9,8 @@ class Header extends Component {
       address: "2101 Legion Street",
       email: "stevenobadiah@gmail.com",
       mobile: "516-508-6190",
-      last_update: Date.now()
+      last_update: Date.now(),
+      button_text: "Edit"
     };
 
     this.name = React.createRef();
@@ -19,36 +20,37 @@ class Header extends Component {
   }
 
   edit = () => {
-    let form = document.getElementById("headerForm")
-    form.classList = "unhidden"
+    if (this.state.button_text === "Edit") {
+        document.getElementById("headerForm").classList = "unhidden"
+        this.setState({button_text: "Cancel"})
+    } else {
+        document.getElementById("headerForm").classList = "hidden"
+        this.setState({button_text: "Edit"})
+    }
   };
 
   submitHeaderEdit = (e) =>  {
     e.preventDefault();
-    let form = document.getElementById("headerForm")
-    let name = document.getElementById("name")
-    let address = document.getElementById("address")
-    let email = document.getElementById("email")
-    let mobile = document.getElementById("mobile")
-    this.setState({name: this.name.current.value, address: this.address.current.value, email: this.email.current.value, mobile: this.mobile.current.value, last_update: this.state.last_update}, () => {
-        name.textContent = this.name.current.value
-        address.textContent = this.address.current.value
-        email.textContent = this.email.current.value
-        mobile.textContent = this.mobile.current.value
-    });
-    form.classList = "hidden"
+    this.setState({name: this.name.current.value, address: this.address.current.value, email: this.email.current.value, mobile: this.mobile.current.value, last_update: this.state.last_update}, () => {});
+    document.getElementById("headerForm").classList = "hidden"
+    document.getElementById("btnToggleHeaderForm").innerHTML = "Edit"
+
   }
 
   render() {
-    const { name, address, email, mobile } = this.state;
+    const { name, address, email, mobile, button_text } = this.state;
     return (
-      <div className={"header"}>
-          <div className={"header-display"}>
-              <p id="name">{name}</p>
-              <p id="address">{address}</p>
-              <p id="email">{email}</p>
-              <p id="mobile">{mobile}</p>
-              <button onClick={this.edit} className={"edit-header-btn"}>Edit</button>
+      <section className={"header"}>
+          <div id="headerDisplay">
+              <div id="headerFields">
+                <h2 id="name">{name}</h2>
+                <div className={"header-sub"}>
+                  <span id="address">{address} | </span>
+                  <span id="email">{email} | </span>
+                  <span id="mobile">{mobile}</span>
+                </div>
+              </div>
+              <button onClick={this.edit} id="btnToggleHeaderForm">{button_text}</button>
           </div>
           <div className={"header-editor"}>
               <form id="headerForm" onSubmit={this.submitHeaderEdit} className={"hidden"}>
@@ -65,7 +67,7 @@ class Header extends Component {
                   </button>
               </form>
           </div>
-      </div>
+      </section>
     );
   };
 }
