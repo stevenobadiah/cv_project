@@ -5,7 +5,7 @@ class SkillFactory extends Component {
     render() {
         const { skills, deleteSkill } = this.props;
         return (
-            <ul>
+            <ul id="skillList">
             {skills.map((skill) => {
                 return (
                     <li key={skill.id}>

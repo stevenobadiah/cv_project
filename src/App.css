@@ -72,7 +72,6 @@ main {
 }
 
 section {
-  background-color: yellow;
   display: block;
   width: 100%;
 }
@@ -133,4 +132,15 @@ section {
 .experience-date-range {
   float: right;
   text-align: right;
+}
+
+#skillList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#skillList > li {
+  width: 25%;
+  text-align: center;
 }

@@ -14,15 +14,27 @@ class App extends Component {
       educations: [],
       experiences: [],
       skills: [],
+      buttons: "Remove Buttons"
     };
   }
 
+  toggleButtons = () => {
+    //FIX THIS FUNCTIONALITY
+    if (this.state.buttons === "Remove Buttons") {
+      this.setState({buttons: "Display Buttons"})
+    } else {
+      this.setState({buttons: "Remove Buttons"})
+    }
+  }
+
   render() {
+    const {buttons} = this.state
 
     return (
       <div>
         <header>
           <h1>CV Builder</h1>
+          <button onClick={this.toggleButtons} id="btnToggleButtons" type="button">{buttons}</button>
         </header>
         <main>
           <Header/>
